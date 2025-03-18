@@ -1,0 +1,143 @@
+syntax = "proto3";
+
+package products;
+
+import "google/protobuf/timestamp.proto";
+
+// Product service definition
+service ProductService {
+  // Gets a single product by ID
+  rpc GetProduct (GetProductRequest) returns (Product) {}
+  
+  // Creates a new product
+  rpc CreateProduct (CreateProductRequest) returns (Product) {}
+  
+  // Lists products with pagination
+  rpc ListProducts (ListProductsRequest) returns (ListProductsResponse) {}
+  
+  // Updates an existing product
+  rpc UpdateProduct (UpdateProductRequest) returns (Product) {}
+  
+  // Deletes a product
+  rpc DeleteProduct (DeleteProductRequest) returns (DeleteProductResponse) {}
+  
+  // Search for products
+  rpc SearchProducts (SearchProductsRequest) returns (SearchProductsResponse) {}
+  
+  // Get product inventory
+  rpc GetInventory (GetInventoryRequest) returns (stream InventoryItem) {}
+}
+
+// Product entity
+message Product {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  bool in_stock = 5;
+  int32 quantity = 6;
+  google.protobuf.Timestamp created_at = 7;
+  repeated string categories = 8;
+  ProductAttributes attributes = 9;
+}
+
+// Product attributes
+message ProductAttributes {
+  string color = 1;
+  string size = 2;
+  string brand = 3;
+  map<string, string> custom_attributes = 4;
+}
+
+// Inventory item
+message InventoryItem {
+  string product_id = 1;
+  string warehouse_id = 2;
+  int32 quantity = 3;
+  string location = 4;
+}
+
+// Request for getting a single product
+message GetProductRequest {
+  string product_id = 1;
+}
+
+// Request for creating a product
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+  double price = 3;
+  int32 quantity = 4;
+  repeated string categories = 5;
+  ProductAttributes attributes = 6;
+}
+
+// Request for listing products
+message ListProductsRequest {
+  int32 page = 1;
+  int32 limit = 2;
+  string sort_by = 3;
+  bool descending = 4;
+  string category = 5;
+}
+
+// Response for listing products
+message ListProductsResponse {
+  repeated Product products = 1;
+  int32 total_count = 2;
+  bool has_more = 3;
+}
+
+// Request for updating a product
+message UpdateProductRequest {
+  string product_id = 1;
+  string name = 2;
+  string description = 3;
+  double price = 4;
+  bool in_stock = 5;
+  int32 quantity = 6;
+  repeated string categories = 7;
+  ProductAttributes attributes = 8;
+}
+
+// Request for deleting a product
+message DeleteProductRequest {
+  string product_id = 1;
+}
+
+// Response after deleting a product
+message DeleteProductResponse {
+  bool success = 1;
+}
+
+// Request for searching products
+message SearchProductsRequest {
+  string query = 1;
+  int32 page = 2;
+  int32 limit = 3;
+  repeated string categories = 4;
+  double min_price = 5;
+  double max_price = 6;
+}
+
+// Response for product search
+message SearchProductsResponse {
+  repeated ProductSearchResult results = 1;
+  int32 total_results = 2;
+  bool has_more = 3;
+}
+
+// Product search result
+message ProductSearchResult {
+  string id = 1;
+  string name = 2;
+  double price = 3;
+  repeated string categories = 4;
+  string thumbnail_url = 5;
+}
+
+// Request for getting inventory
+message GetInventoryRequest {
+  string product_id = 1;
+  bool include_all_warehouses = 2;
+}

@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package users;
+
+import "google/protobuf/timestamp.proto";
+
+// User service definition
+service UserService {
+  // Gets a single user by ID
+  rpc GetUser (GetUserRequest) returns (User) {}
+  
+  // Creates a new user
+  rpc CreateUser (CreateUserRequest) returns (User) {}
+  
+  // Lists users with pagination
+  rpc ListUsers (ListUsersRequest) returns (ListUsersResponse) {}
+  
+  // Updates an existing user
+  rpc UpdateUser (UpdateUserRequest) returns (User) {}
+  
+  // Deletes a user
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse) {}
+}
+
+// User entity
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  bool active = 4;
+  google.protobuf.Timestamp created_at = 5;
+  repeated string roles = 6;
+  UserPreferences preferences = 7;
+}
+
+// User preferences
+message UserPreferences {
+  bool notifications_enabled = 1;
+  string theme = 2;
+  string language = 3;
+}
+
+// Request for getting a single user
+message GetUserRequest {
+  string id = 1;
+}
+
+// Request for creating a user
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  repeated string roles = 3;
+  UserPreferences preferences = 4;
+}
+
+// Request for listing users
+message ListUsersRequest {
+  int32 page = 1;
+  int32 limit = 2;
+  string sort_by = 3;
+  bool descending = 4;
+  string filter = 5;
+}
+
+// Response for listing users
+message ListUsersResponse {
+  repeated User users = 1;
+  int32 total_count = 2;
+  bool has_more = 3;
+}
+
+// Request for updating a user
+message UpdateUserRequest {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  bool active = 4;
+  repeated string roles = 5;
+  UserPreferences preferences = 6;
+}
+
+// Request for deleting a user
+message DeleteUserRequest {
+  string id = 1;
+}
+
+// Response after deleting a user
+message DeleteUserResponse {
+  bool success = 1;
+}
