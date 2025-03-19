@@ -1,129 +1,131 @@
 {
-    "helloworld.Greeter": {
-      "sayHello": {
-        "{\"name\":\"World\"}": {
-          "message": "Hello World!"
-        },
-        "{\"name\":\"John\"}": {
-          "message": "Hello John, how are you today?"
-        },
-        "{\"name\":\"Alice\"}": {
-          "message": "Hi Alice! Welcome back."
-        }
+  "helloworld.Greeter": {
+    "sayHello": {
+      "{\"name\":\"World\"}": {
+        "message": "Hello World!"
       },
-      "sayGoodbye": {
+      "{\"name\":\"John\"}": {
+        "message": "Hello John, how are you today?"
+      },
+      "{\"name\":\"Alice\"}": {
+        "message": "Hi Alice! Welcome back."
+      }
+    },
+    "sayGoodbye": {
+      "{\"name\":\"John\"}": {
         "message": "Goodbye!"
       }
-    },
-    "users.UserService": {
-      "getUser": {
-        "{\"id\":\"1\"}": {
-          "id": "1",
-          "name": "John Doe",
-          "email": "john@example.com",
-          "active": true,
-          "createdAt": "2023-01-15T08:30:00Z"
-        },
-        "{\"id\":\"2\"}": {
-          "id": "2",
-          "name": "Jane Smith",
-          "email": "jane@example.com",
-          "active": true,
-          "createdAt": "2023-02-20T14:15:30Z"
-        }
+    }
+  },
+  "users.UserService": {
+    "getUser": {
+      "{\"id\":\"1\"}": {
+        "id": "1",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "active": true,
+        "createdAt": "2023-01-15T08:30:00Z"
       },
-      "createUser": {
-        "{\"name\":\"New User\",\"email\":\"new@example.com\"}": {
-          "id": "3",
-          "name": "New User",
-          "email": "new@example.com",
-          "active": true,
-          "createdAt": "2023-03-10T09:45:00Z"
-        }
-      },
-      "listUsers": {
-        "{}": {
-          "users": [
-            {
-              "id": "1",
-              "name": "John Doe",
-              "email": "john@example.com"
-            },
-            {
-              "id": "2",
-              "name": "Jane Smith",
-              "email": "jane@example.com"
-            }
-          ],
-          "totalCount": 2,
-          "hasMore": false
-        },
-        "{\"page\":1,\"limit\":10}": {
-          "users": [
-            {
-              "id": "1",
-              "name": "John Doe",
-              "email": "john@example.com"
-            },
-            {
-              "id": "2",
-              "name": "Jane Smith",
-              "email": "jane@example.com"
-            }
-          ],
-          "totalCount": 2,
-          "hasMore": false
-        }
+      "{\"id\":\"2\"}": {
+        "id": "2",
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "active": true,
+        "createdAt": "2023-02-20T14:15:30Z"
       }
     },
-    "products.ProductService": {
-      "getProduct": {
-        "{\"productId\":\"prod-001\"}": {
-          "id": "prod-001",
-          "name": "Laptop",
-          "price": 999.99,
-          "inStock": true,
-          "categories": ["electronics", "computers"]
-        },
-        "{\"productId\":\"prod-002\"}": {
-          "id": "prod-002",
-          "name": "Smartphone",
-          "price": 699.99,
-          "inStock": true,
-          "categories": ["electronics", "phones"]
-        }
+    "createUser": {
+      "{\"name\":\"New User\",\"email\":\"new@example.com\"}": {
+        "id": "3",
+        "name": "New User",
+        "email": "new@example.com",
+        "active": true,
+        "createdAt": "2023-03-10T09:45:00Z"
+      }
+    },
+    "listUsers": {
+      "{}": {
+        "users": [
+          {
+            "id": "1",
+            "name": "John Doe",
+            "email": "john@example.com"
+          },
+          {
+            "id": "2",
+            "name": "Jane Smith",
+            "email": "jane@example.com"
+          }
+        ],
+        "totalCount": 2,
+        "hasMore": false
       },
-      "searchProducts": {
-        "{\"query\":\"laptop\"}": {
-          "results": [
-            {
-              "id": "prod-001",
-              "name": "Laptop",
-              "price": 999.99
-            },
-            {
-              "id": "prod-003",
-              "name": "Laptop Bag",
-              "price": 49.99
-            }
-          ],
-          "totalResults": 2
-        },
-        "{\"query\":\"phone\"}": {
-          "results": [
-            {
-              "id": "prod-002",
-              "name": "Smartphone",
-              "price": 699.99
-            },
-            {
-              "id": "prod-004",
-              "name": "Phone Charger",
-              "price": 19.99
-            }
-          ],
-          "totalResults": 2
-        }
+      "{\"page\":1,\"limit\":10}": {
+        "users": [
+          {
+            "id": "1",
+            "name": "John Doe",
+            "email": "john@example.com"
+          },
+          {
+            "id": "2",
+            "name": "Jane Smith",
+            "email": "jane@example.com"
+          }
+        ],
+        "totalCount": 2,
+        "hasMore": false
+      }
+    }
+  },
+  "products.ProductService": {
+    "getProduct": {
+      "{\"productId\":\"prod-001\"}": {
+        "id": "prod-001",
+        "name": "Laptop",
+        "price": 999.99,
+        "inStock": true,
+        "categories": ["electronics", "computers"]
+      },
+      "{\"productId\":\"prod-002\"}": {
+        "id": "prod-002",
+        "name": "Smartphone",
+        "price": 699.99,
+        "inStock": true,
+        "categories": ["electronics", "phones"]
+      }
+    },
+    "searchProducts": {
+      "{\"query\":\"laptop\"}": {
+        "results": [
+          {
+            "id": "prod-001",
+            "name": "Laptop",
+            "price": 999.99
+          },
+          {
+            "id": "prod-003",
+            "name": "Laptop Bag",
+            "price": 49.99
+          }
+        ],
+        "totalResults": 2
+      },
+      "{\"query\":\"phone\"}": {
+        "results": [
+          {
+            "id": "prod-002",
+            "name": "Smartphone",
+            "price": 699.99
+          },
+          {
+            "id": "prod-004",
+            "name": "Phone Charger",
+            "price": 19.99
+          }
+        ],
+        "totalResults": 2
       }
     }
   }
+}
